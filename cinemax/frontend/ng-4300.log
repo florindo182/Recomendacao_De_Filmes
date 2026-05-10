@@ -1,0 +1,89 @@
+
+> cinemax@1.0.0 start
+> ng serve --port 4300
+
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m14.46 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                 [2m | [22m [36m7.48 kB[39m[2m | [22m
+[32mchunk-JBRKUW2I.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m2.55 kB[39m[2m | [22m
+[32mchunk-MO3PDUVK.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m1.07 kB[39m[2m | [22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m              [2m | [22m[36m95 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m          [2m | [22m[1m25.65 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-RFR5MCFO.js[39m  [2m | [22m[2mfilme-detalhe-component[22m[2m | [22m[36m33.62 kB[39m[2m | [22m
+[32mchunk-45I7YHT5.js[39m  [2m | [22m[2mauth-component[22m         [2m | [22m[36m21.25 kB[39m[2m | [22m
+[32mchunk-GDYCAK3S.js[39m  [2m | [22m[2mcatalogo-component[22m     [2m | [22m[36m16.70 kB[39m[2m | [22m
+[32mchunk-PCYDUDCW.js[39m  [2m | [22m[2m-[22m                      [2m | [22m[36m14.49 kB[39m[2m | [22m
+[32mchunk-WRIYLKDF.js[39m  [2m | [22m[2mfavoritos-component[22m    [2m | [22m[36m13.81 kB[39m[2m | [22m
+[32mchunk-3BF6ZXUE.js[39m  [2m | [22m[2mrecomendacoes-component[22m[2m | [22m [36m8.55 kB[39m[2m | [22m
+[32mchunk-TKE37YD7.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m3.18 kB[39m[2m | [22m
+
+Application bundle generation complete. [43.780 seconds] - 2026-05-10T12:40:50.781Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4300[22m/[39m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m14.46 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-7K2ZMUVW.js[39m  [2m | [22m[2mfilme-detalhe-component[22m[2m | [22m[36m33.62 kB[39m[2m | [22m
+[32mchunk-BOOIH437.js[39m  [2m | [22m[2mcatalogo-component[22m     [2m | [22m[36m16.70 kB[39m[2m | [22m
+[32mchunk-UND6GI7K.js[39m  [2m | [22m[2m-[22m                      [2m | [22m[36m14.49 kB[39m[2m | [22m
+[32mchunk-AILQ2NAF.js[39m  [2m | [22m[2mfavoritos-component[22m    [2m | [22m[36m13.81 kB[39m[2m | [22m
+[32mchunk-IZRSK7VZ.js[39m  [2m | [22m[2mrecomendacoes-component[22m[2m | [22m [36m8.55 kB[39m[2m | [22m
+[32mchunk-ERSXRX3W.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m3.25 kB[39m[2m | [22m
+
+Application bundle generation complete. [55.244 seconds] - 2026-05-10T13:38:40.990Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m14.46 kB[39m[2m | [22m
+[32mchunk-7JFSMDEA.js[39m  [2m | [22m[2m-[22m                      [2m | [22m [36m2.68 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-BC5HEGIO.js[39m  [2m | [22m[2mfilme-detalhe-component[22m[2m | [22m[36m33.62 kB[39m[2m | [22m
+[32mchunk-QWKZWSKB.js[39m  [2m | [22m[2mauth-component[22m         [2m | [22m[36m21.25 kB[39m[2m | [22m
+[32mchunk-6NFE5XMJ.js[39m  [2m | [22m[2mcatalogo-component[22m     [2m | [22m[36m16.72 kB[39m[2m | [22m
+
+Application bundle generation complete. [14.111 seconds] - 2026-05-10T13:38:56.074Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m14.56 kB[39m[2m | [22m
+
+Application bundle generation complete. [11.712 seconds] - 2026-05-10T13:39:25.523Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                    [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                     [2m | [22m[36m14.69 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                    [2m | [22m[1mRaw size[22m
+[32mchunk-CIP7BXIJ.js[39m  [2m | [22m[2mforgot-password-component[22m[2m | [22m[36m21.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [10.901 seconds] - 2026-05-10T13:40:08.241Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                   [2m | [22m[36m14.69 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                  [2m | [22m[1mRaw size[22m
+[32mchunk-JXBRPC5H.js[39m  [2m | [22m[2mfilme-detalhe-component[22m[2m | [22m[36m34.16 kB[39m[2m | [22m
+
+Application bundle generation complete. [11.580 seconds] - 2026-05-10T13:41:08.791Z
+
+Page reload sent to client(s).

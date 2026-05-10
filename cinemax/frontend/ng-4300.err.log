@@ -1,0 +1,6 @@
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUnable to initialize JavaScript cache storage.[0m [1m[35m[plugin angular-compiler][0m
+
+  Cannot find module 'lmdb'
+  This will not affect the build output content but may result in slower builds.
+
+[39m[22m

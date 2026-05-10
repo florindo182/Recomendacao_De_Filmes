@@ -1,0 +1,59 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "CATALOG": "Catalog",
+    "FAVORITES": "Favorites",
+    "RECOMMENDATIONS": "Recommended",
+    "LOGIN": "Sign In",
+    "LOGOUT": "Sign Out",
+    "REGISTER": "Register"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Welcome back",
+    "REGISTER_TITLE": "Create account",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "NAME": "Full name",
+    "FORGOT": "Forgot password",
+    "SUBMIT_LOGIN": "Sign In",
+    "SUBMIT_REGISTER": "Create account",
+    "NO_ACCOUNT": "Don't have an account?",
+    "HAS_ACCOUNT": "Already have an account?"
+  },
+  "MOVIES": {
+    "TITLE": "Movie Catalog",
+    "TITLE_LABEL": "Title",
+    "DETAILS": "View details",
+    "TRAILER": "Trailer",
+    "SEARCH_PLACEHOLDER": "Search movies...",
+    "FILTER_GENRE": "Filter by genre",
+    "ALL_GENRES": "All genres",
+    "YEAR": "Year",
+    "RATING": "Rating",
+    "DURATION": "Duration",
+    "SYNOPSIS": "Synopsis",
+    "MY_RATING": "My rating",
+    "COMMENT": "Comment",
+    "SAVE_RATING": "Save rating",
+    "ADD_FAVORITE": "Add to favorites",
+    "REMOVE_FAVORITE": "Remove from favorites",
+    "NO_RESULTS": "No movies found.",
+    "EXPORT_CSV": "Export favorites CSV",
+    "RECOMMENDATIONS_TITLE": "Recommended for you",
+    "MIN": "min"
+  },
+  "THEME": {
+    "DARK": "Dark mode",
+    "LIGHT": "Light mode"
+  },
+  "GENERAL": {
+    "LOADING": "Loading...",
+    "ERROR": "An error occurred",
+    "SUCCESS": "Success",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "CLOSE": "Close"
+  }
+}

@@ -1,0 +1,12 @@
+Options -Indexes
+RewriteEngine On
+
+# Responder a OPTIONS (preflight CORS) antes de tudo
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule .* - [R=204,L]
+
+# Segurança: bloquear acesso directo a ficheiros de config
+<FilesMatch "^(Database|helpers)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

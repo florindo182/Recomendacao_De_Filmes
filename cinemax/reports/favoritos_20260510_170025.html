@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report de Favoritos - Cinemax</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08080d;
+      --panel: #12121b;
+      --line: rgba(255,255,255,.09);
+      --text: #f4f4fb;
+      --muted: #aaaad0;
+      --accent: #e50914;
+      --accent-soft: rgba(229,9,20,.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 40px;
+    }
+    .shell { max-width: 1180px; margin: 0 auto; }
+    .header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .brand { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 8px 0 0; font-size: 34px; letter-spacing: .02em; }
+    .meta { color: var(--muted); text-align: right; line-height: 1.6; font-size: 14px; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .stat strong { display: block; font-size: 28px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .table-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.35);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left;
+      padding: 16px 18px;
+      color: #8f8bd0;
+      font-size: 12px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: 16px 18px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .title-cell { color: var(--text); font-weight: 700; }
+    .badge {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 7px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 12px;
+    }
+    .empty { text-align: center; padding: 40px; }
+    @media print {
+      body { background: #fff; color: #111; padding: 20px; }
+      .table-wrap, .stat { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="header">
+      <div>
+        <div class="brand">Cinemax</div>
+        <h1>Report de Favoritos</h1>
+      </div>
+      <div class="meta">
+        <div>Gerado em 10/05/2026 17:00</div>
+        <div>3 filmes na lista</div>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="stat"><strong>3</strong><span>Total de favoritos</span></div>
+      <div class="stat"><strong>Cinemax</strong><span>Relatorio personalizado</span></div>
+    </section>
+
+    <section class="table-wrap">
+      <table>
+        <thead><tr><th>Titulo</th><th>Ano</th><th>Genero</th><th>TMDB</th><th>Adicionado em</th></tr></thead>
+        <tbody><tr><td class="title-cell">You&#039;re Doing it Wrong</td><td>2026</td><td><span class="badge">Comédia</span></td><td>10.0</td><td>2026-05-10 15:52:05</td></tr><tr><td class="title-cell">A Origem</td><td>2010</td><td><span class="badge">Ficção Científica</span></td><td>8.8</td><td>2026-05-10 13:44:29</td></tr><tr><td class="title-cell">O Padrinho</td><td>1972</td><td><span class="badge">Crime</span></td><td>9.2</td><td>2026-05-10 13:21:47</td></tr></tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "NAV": {
+    "HOME": "Início",
+    "CATALOG": "Catálogo",
+    "FAVORITES": "Favoritos",
+    "RECOMMENDATIONS": "Recomendados",
+    "LOGIN": "Entrar",
+    "LOGOUT": "Sair",
+    "REGISTER": "Registar"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Bem-vindo de volta",
+    "REGISTER_TITLE": "Criar conta",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "NAME": "Nome completo",
+    "FORGOT": "Esqueci a password",
+    "SUBMIT_LOGIN": "Entrar",
+    "SUBMIT_REGISTER": "Criar conta",
+    "NO_ACCOUNT": "Não tem conta?",
+    "HAS_ACCOUNT": "Já tem conta?"
+  },
+  "MOVIES": {
+    "TITLE": "Catálogo de Filmes",
+    "TITLE_LABEL": "Titulo",
+    "DETAILS": "Ver detalhes",
+    "TRAILER": "Trailer",
+    "SEARCH_PLACEHOLDER": "Pesquisar filmes...",
+    "FILTER_GENRE": "Filtrar por género",
+    "ALL_GENRES": "Todos os géneros",
+    "YEAR": "Ano",
+    "RATING": "Classificação",
+    "DURATION": "Duração",
+    "SYNOPSIS": "Sinopse",
+    "MY_RATING": "A minha avaliação",
+    "COMMENT": "Comentário",
+    "SAVE_RATING": "Guardar avaliação",
+    "ADD_FAVORITE": "Adicionar aos favoritos",
+    "REMOVE_FAVORITE": "Remover dos favoritos",
+    "NO_RESULTS": "Nenhum filme encontrado.",
+    "EXPORT_CSV": "Exportar favoritos CSV",
+    "RECOMMENDATIONS_TITLE": "Recomendado para si",
+    "MIN": "min"
+  },
+  "THEME": {
+    "DARK": "Modo escuro",
+    "LIGHT": "Modo claro"
+  },
+  "GENERAL": {
+    "LOADING": "A carregar...",
+    "ERROR": "Ocorreu um erro",
+    "SUCCESS": "Sucesso",
+    "CANCEL": "Cancelar",
+    "SAVE": "Guardar",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar",
+    "CLOSE": "Fechar"
+  }
+}

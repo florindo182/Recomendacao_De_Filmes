@@ -1,0 +1,251 @@
+/* src/styles.scss — Cinemax Global Styles */
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+/* ── CSS Variables: Light Theme ───────────────────────────── */
+:root, [data-theme="light"] {
+  --bg-primary:    #f4f4f8;
+  --bg-secondary:  #ffffff;
+  --surface2:      #e8e8f0;
+  --card-bg:       #ffffff;
+  --input-bg:      #f0f0f6;
+  --border:        rgba(0,0,0,.1);
+  --shadow-card:   rgba(0,0,0,.12);
+
+  --text-primary:   #0d0d1a;
+  --text-secondary: #3d3d5c;
+  --text-muted:     #7a7a9a;
+
+  --accent:         #e50914;
+  --accent-alpha:   rgba(229,9,20,.12);
+  --accent-hover:   #c8060f;
+
+  --navbar-bg:      rgba(255,255,255,.85);
+  --navbar-border:  rgba(0,0,0,.08);
+
+  color-scheme: light;
+}
+
+/* ── CSS Variables: Dark Theme ────────────────────────────── */
+[data-theme="dark"] {
+  --bg-primary:    #0a0a0f;
+  --bg-secondary:  #111118;
+  --surface2:      #1c1c28;
+  --card-bg:       #141420;
+  --input-bg:      #1c1c28;
+  --border:        rgba(255,255,255,.08);
+  --shadow-card:   rgba(0,0,0,.5);
+
+  --text-primary:   #f0f0f8;
+  --text-secondary: #b0b0cc;
+  --text-muted:     #6060a0;
+
+  --accent:         #e50914;
+  --accent-alpha:   rgba(229,9,20,.18);
+  --accent-hover:   #ff2030;
+
+  --navbar-bg:      rgba(10,10,15,.92);
+  --navbar-border:  rgba(255,255,255,.06);
+
+  color-scheme: dark;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color .3s ease, color .3s ease;
+  min-height: 100vh;
+}
+
+/* ── Navbar ───────────────────────────────────────────────── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  display: flex; align-items: center; gap: 2rem;
+  padding: 0 2rem; height: 64px;
+}
+
+.nav-brand {
+  display: flex; align-items: center; gap: .5rem;
+  text-decoration: none; flex-shrink: 0;
+}
+.logo-icon { font-size: 1.4rem; }
+.logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: .12em;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex; gap: 1.5rem; flex: 1;
+}
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-size: .875rem; font-weight: 600; letter-spacing: .04em;
+  padding: .25rem 0; border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent); border-bottom-color: var(--accent);
+}
+
+.nav-actions {
+  display: flex; align-items: center; gap: .75rem; margin-left: auto;
+}
+
+.lang-select {
+  background: var(--surface2); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: .3rem .5rem; font-size: .8rem; cursor: pointer;
+}
+
+.theme-btn {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: .3rem .55rem; cursor: pointer;
+  font-size: 1rem; transition: background .2s;
+}
+.theme-btn:hover { background: var(--border); }
+
+.user-name {
+  font-size: .875rem; font-weight: 600; color: var(--text-secondary);
+  max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary, .btn-outline {
+  padding: .45rem 1rem; border-radius: 10px;
+  font-size: .8rem; font-weight: 700; text-decoration: none;
+  cursor: pointer; transition: all .2s; letter-spacing: .03em;
+  display: inline-flex; align-items: center; gap: .3rem;
+}
+.btn-primary {
+  background: var(--accent); color: #fff; border: 2px solid var(--accent);
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+.btn-outline {
+  background: transparent; color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Main Layout ──────────────────────────────────────────── */
+.main-content {
+  max-width: 1400px; margin: 0 auto; padding: 2rem 2rem 4rem;
+}
+
+/* ── Page Header ──────────────────────────────────────────── */
+.page-header {
+  margin-bottom: 2rem;
+}
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; letter-spacing: .08em;
+  color: var(--text-primary); margin-bottom: .75rem;
+}
+
+/* ── Filters Bar ──────────────────────────────────────────── */
+.filters-bar {
+  display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+}
+.search-wrap {
+  position: relative; flex: 1; min-width: 220px;
+}
+.search-icon {
+  position: absolute; left: .85rem; top: 50%; transform: translateY(-50%);
+  color: var(--text-muted); font-size: .9rem; pointer-events: none;
+}
+.search-input {
+  width: 100%; padding: .65rem 1rem .65rem 2.5rem;
+  background: var(--card-bg); border: 1.5px solid var(--border);
+  border-radius: 12px; color: var(--text-primary); font-size: .9rem;
+  font-family: inherit; transition: border-color .2s;
+}
+.search-input:focus { outline: none; border-color: var(--accent); }
+.search-input::placeholder { color: var(--text-muted); }
+
+.filter-select {
+  padding: .65rem 1rem; background: var(--card-bg);
+  border: 1.5px solid var(--border); border-radius: 12px;
+  color: var(--text-primary); font-size: .875rem;
+  font-family: inherit; cursor: pointer; min-width: 160px;
+}
+.filter-select:focus { outline: none; border-color: var(--accent); }
+
+/* ── Movies Grid ──────────────────────────────────────────── */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Skeleton Loading ─────────────────────────────────────── */
+.loading-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 1.5rem;
+}
+.skeleton-card {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  border-radius: 12px; aspect-ratio: 2/3;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Empty State ──────────────────────────────────────────── */
+.empty-state {
+  text-align: center; padding: 5rem 2rem;
+  color: var(--text-muted);
+}
+.empty-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+.empty-state p { font-size: 1.1rem; }
+
+/* ── Pagination ───────────────────────────────────────────── */
+.pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 1rem; margin-top: 3rem;
+}
+.page-btn {
+  background: var(--card-bg); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: .5rem .9rem; cursor: pointer;
+  color: var(--text-primary); font-size: 1.1rem; transition: all .2s;
+}
+.page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.page-btn:disabled { opacity: .35; cursor: not-allowed; }
+.page-info { color: var(--text-muted); font-size: .875rem; min-width: 60px; text-align: center; }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar { padding: 0 1rem; gap: .75rem; }
+  .nav-links { display: none; }
+  .main-content { padding: 1.25rem 1rem 3rem; }
+  .page-header h1 { font-size: 1.8rem; }
+  .movies-grid, .loading-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem; }
+  .filters-bar { flex-direction: column; }
+  .search-wrap, .filter-select { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .movies-grid, .loading-grid { grid-template-columns: repeat(2, 1fr); }
+}

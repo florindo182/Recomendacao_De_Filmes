@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="750" viewBox="0 0 500 750" role="img" aria-label="Poster indisponivel">
+  <rect width="500" height="750" fill="#181824"/>
+  <rect x="36" y="36" width="428" height="678" rx="18" fill="#222235" stroke="#3a3a4f" stroke-width="4"/>
+  <path d="M165 255h170a26 26 0 0 1 26 26v142a26 26 0 0 1-26 26H165a26 26 0 0 1-26-26V281a26 26 0 0 1 26-26Z" fill="#30304a"/>
+  <path d="m220 318 92 54-92 54V318Z" fill="#e50914"/>
+  <text x="250" y="520" fill="#d7d7e8" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">CINEMAX</text>
+  <text x="250" y="565" fill="#8585a6" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">Poster indisponivel</text>
+</svg>
