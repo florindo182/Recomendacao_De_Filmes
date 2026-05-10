@@ -127,9 +127,19 @@ body {
 }
 .theme-btn:hover { background: var(--border); }
 
-.user-name {
-  font-size: .875rem; font-weight: 600; color: var(--text-secondary);
-  max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.profile-avatar {
+  width: 34px; height: 34px; border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent); color: #fff; text-decoration: none;
+  font-size: .95rem; font-weight: 900; letter-spacing: .02em;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 8px 18px rgba(229,9,20,.22);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.profile-avatar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(229,9,20,.3);
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */

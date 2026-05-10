@@ -3,12 +3,16 @@ import { Routes } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { catchError, map, of } from 'rxjs';
 
 const authGuard = () => {
   const auth   = inject(AuthService);
   const router = inject(Router);
   if (auth.isLoggedIn()) return true;
-  return router.createUrlTree(['/login']);
+  return auth.checkSession().pipe(
+    map(isLoggedIn => isLoggedIn ? true : router.createUrlTree(['/login'])),
+    catchError(() => of(router.createUrlTree(['/login'])))
+  );
 };
 
 export const routes: Routes = [
@@ -42,6 +46,11 @@ export const routes: Routes = [
   {
     path: 'recomendacoes',
     loadComponent: () => import('./pages/recomendacoes/recomendacoes.component').then(m => m.RecomendacoesComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/perfil/perfil.component').then(m => m.PerfilComponent),
     canActivate: [authGuard],
   },
   { path: '**', redirectTo: 'catalogo' },

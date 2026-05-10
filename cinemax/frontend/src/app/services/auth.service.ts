@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface User {
@@ -25,20 +25,22 @@ export class AuthService {
   isLoggedIn  = signal<boolean>(false);
 
   constructor(private http: HttpClient) {
-    this.checkSession();
+    this.checkSession().subscribe();
   }
 
-  private checkSession(): void {
-    this.http.get<AuthResponse>(`${this.API}?action=me`, this.opts)
-      .subscribe({
-        next: res => {
-          if (res.success && res.data?.id) {
-            this.currentUser.set(res.data);
-            this.isLoggedIn.set(true);
-          }
-        },
-        error: () => {}
-      });
+  checkSession(): Observable<boolean> {
+    return this.http.get<AuthResponse>(`${this.API}?action=me`, this.opts).pipe(
+      tap(res => {
+        if (res.success && res.data?.id) {
+          this.currentUser.set(res.data);
+          this.isLoggedIn.set(true);
+        } else {
+          this.currentUser.set(null);
+          this.isLoggedIn.set(false);
+        }
+      }),
+      map(res => !!(res.success && res.data?.id))
+    );
   }
 
   login(email: string, password: string): Observable<AuthResponse> {

@@ -1,6 +1,6 @@
 // src/app/app.component.ts
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
@@ -35,7 +35,9 @@ import { AuthService } from './services/auth.service';
         </button>
 
         <ng-container *ngIf="auth.isLoggedIn(); else guestActions">
-          <span class="user-name">{{ auth.currentUser()?.nome }}</span>
+          <button type="button" class="profile-avatar" [title]="auth.currentUser()?.nome || 'Perfil'" (click)="goProfile()">
+            {{ userInitial() }}
+          </button>
           <button class="btn-outline" (click)="logout()">{{ 'NAV.LOGOUT' | translate }}</button>
         </ng-container>
 
@@ -57,7 +59,8 @@ export class AppComponent implements OnInit {
   constructor(
     public theme: ThemeService,
     public auth: AuthService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +72,14 @@ export class AppComponent implements OnInit {
     this.currentLang = lang;
     localStorage.setItem('lang', lang);
     this.translate.use(lang);
+  }
+
+  userInitial(): string {
+    return (this.auth.currentUser()?.nome || 'U').trim().charAt(0).toUpperCase();
+  }
+
+  goProfile(): void {
+    this.router.navigate(['/perfil']);
   }
 
   logout(): void {
