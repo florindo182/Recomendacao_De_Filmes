@@ -104,10 +104,20 @@ body {
   display: flex; align-items: center; gap: .75rem; margin-left: auto;
 }
 
-.lang-select {
-  background: var(--surface2); color: var(--text-primary);
+.lang-switch {
+  display: inline-flex; align-items: center; gap: .35rem;
+  background: var(--surface2); color: var(--text-muted);
   border: 1px solid var(--border); border-radius: 8px;
-  padding: .3rem .5rem; font-size: .8rem; cursor: pointer;
+  padding: .3rem .5rem; font-size: .8rem; font-weight: 800;
+}
+.lang-switch button {
+  background: none; border: 0; padding: 0;
+  color: var(--text-muted); cursor: pointer;
+  font: inherit; letter-spacing: .03em;
+}
+.lang-switch button.active,
+.lang-switch button:hover {
+  color: var(--accent);
 }
 
 .theme-btn {

@@ -18,19 +18,18 @@ import { AuthService } from './services/auth.service';
       </a>
 
       <div class="nav-links" *ngIf="auth.isLoggedIn()">
-        <a routerLink="/catalogo"         routerLinkActive="active">{{ 'NAV.CATALOG' | translate }}</a>
-        <a routerLink="/favoritos"        routerLinkActive="active">{{ 'NAV.FAVORITES' | translate }}</a>
-        <a routerLink="/recomendacoes"    routerLinkActive="active">{{ 'NAV.RECOMMENDATIONS' | translate }}</a>
+        <a routerLink="/catalogo" routerLinkActive="active">{{ 'NAV.CATALOG' | translate }}</a>
+        <a routerLink="/favoritos" routerLinkActive="active">{{ 'NAV.FAVORITES' | translate }}</a>
+        <a routerLink="/recomendacoes" routerLinkActive="active">{{ 'NAV.RECOMMENDATIONS' | translate }}</a>
       </div>
 
       <div class="nav-actions">
-        <!-- Seletor de idioma -->
-        <select class="lang-select" [value]="currentLang" (change)="changeLang($event)">
-          <option value="pt">🇦🇴 PT</option>
-          <option value="en">🇬🇧 EN</option>
-        </select>
+        <div class="lang-switch" aria-label="Escolher idioma">
+          <button type="button" [class.active]="currentLang === 'pt'" (click)="changeLang('pt')">PT</button>
+          <span>|</span>
+          <button type="button" [class.active]="currentLang === 'en'" (click)="changeLang('en')">EN</button>
+        </div>
 
-        <!-- Toggle tema -->
         <button class="theme-btn" (click)="theme.toggle()" [title]="(theme.isDark() ? 'THEME.LIGHT' : 'THEME.DARK') | translate">
           {{ theme.isDark() ? '☀️' : '🌙' }}
         </button>
@@ -41,7 +40,7 @@ import { AuthService } from './services/auth.service';
         </ng-container>
 
         <ng-template #guestActions>
-          <a routerLink="/login"   class="btn-outline">{{ 'NAV.LOGIN' | translate }}</a>
+          <a routerLink="/login" class="btn-outline">{{ 'NAV.LOGIN' | translate }}</a>
           <a routerLink="/registo" class="btn-primary">{{ 'NAV.REGISTER' | translate }}</a>
         </ng-template>
       </div>
@@ -53,7 +52,7 @@ import { AuthService } from './services/auth.service';
   `
 })
 export class AppComponent implements OnInit {
-  currentLang = localStorage.getItem('lang') || 'pt';
+  currentLang: 'pt' | 'en' = (localStorage.getItem('lang') as 'pt' | 'en') || 'pt';
 
   constructor(
     public theme: ThemeService,
@@ -66,8 +65,7 @@ export class AppComponent implements OnInit {
     this.translate.use(this.currentLang);
   }
 
-  changeLang(event: Event): void {
-    const lang = (event.target as HTMLSelectElement).value;
+  changeLang(lang: 'pt' | 'en'): void {
     this.currentLang = lang;
     localStorage.setItem('lang', lang);
     this.translate.use(lang);
