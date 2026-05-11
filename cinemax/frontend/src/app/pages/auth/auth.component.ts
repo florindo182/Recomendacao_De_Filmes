@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -105,7 +105,12 @@ export class AuthComponent implements OnInit {
   error = ''; success = '';
   isRegister = false;
 
-  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.isRegister = this.route.snapshot.url[0]?.path === 'registo';
@@ -127,7 +132,7 @@ export class AuthComponent implements OnInit {
       },
       error: err => {
         this.loading = false;
-        this.error = err.error?.message || 'Erro de ligação ao servidor.';
+        this.error = err.error?.message || this.translate.instant('FORGOT.CONNECTION_ERROR');
       }
     });
   }

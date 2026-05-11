@@ -53,11 +53,12 @@ export class MovieService {
     if (params.genero) p = p.set('genero', params.genero);
     if (params.order)  p = p.set('order',  params.order);
     if (params.source) p = p.set('source', params.source);
+    p = p.set('lang', this.tmdbLang());
     return this.http.get<ApiResponse<FilmesListData>>(this.API, { params: p, ...this.opts });
   }
 
   get(id: number): Observable<ApiResponse<{ filme: Filme; avaliacoes: any[] }>> {
-    return this.http.get<any>(`${this.API}?action=get&id=${id}`, this.opts);
+    return this.http.get<any>(`${this.API}?action=get&id=${id}&lang=${this.tmdbLang()}`, this.opts);
   }
 
   create(data: Partial<Filme>): Observable<ApiResponse> {
@@ -118,6 +119,7 @@ export class MovieService {
     let p = new HttpParams().set('action', 'recomendar');
     if (params.search) p = p.set('search', params.search);
     if (params.limit) p = p.set('limit', params.limit);
+    p = p.set('lang', this.tmdbLang());
     return this.http.get<ApiResponse<Filme[]>>(this.API, { params: p, ...this.opts });
   }
 

@@ -20,6 +20,9 @@
     "NO_ACCOUNT": "Don't have an account?",
     "HAS_ACCOUNT": "Already have an account?"
   },
+  "LANGUAGE": {
+    "SELECT": "Choose language"
+  },
   "MOVIES": {
     "TITLE": "Movie Catalog",
     "TITLE_LABEL": "Title",
@@ -33,14 +36,70 @@
     "DURATION": "Duration",
     "SYNOPSIS": "Synopsis",
     "MY_RATING": "My rating",
+    "MY_RATING_SHORT": "My rating",
     "COMMENT": "Comment",
     "SAVE_RATING": "Save rating",
     "ADD_FAVORITE": "Add to favorites",
     "REMOVE_FAVORITE": "Remove from favorites",
+    "REVIEWS": "Reviews",
+    "GENRE": "Genre",
     "NO_RESULTS": "No movies found.",
     "EXPORT_CSV": "Export favorites CSV",
+    "EXPORT_PDF": "Export favorites PDF",
     "RECOMMENDATIONS_TITLE": "Recommended for you",
     "MIN": "min"
+  },
+  "GENRES": {
+    "ACTION": "Action",
+    "ADVENTURE": "Adventure",
+    "ANIMATION": "Animation",
+    "COMEDY": "Comedy",
+    "CRIME": "Crime",
+    "DRAMA": "Drama",
+    "HORROR": "Horror",
+    "SCI_FI": "Science Fiction",
+    "THRILLER": "Thriller"
+  },
+  "FAVORITES": {
+    "EMPTY": "You have not added any favorites yet."
+  },
+  "RECOMMENDATIONS": {
+    "SEARCH_PLACEHOLDER": "Search to get recommendations...",
+    "EMPTY": "I could not find movies for this recommendation.",
+    "SUBTITLE_DEFAULT": "Based on your ratings, preferences, and searches",
+    "SUBTITLE_SEARCH": "Recommended from your search",
+    "SUBTITLE_SEARCH_FALLBACK": "I could not find that term. Here are popular suggestions.",
+    "SUBTITLE_START": "Popular suggestions to get started",
+    "SUBTITLE_PREFERENCES": "Recommended from your preferences"
+  },
+  "PROFILE": {
+    "EYEBROW": "Cinemax Profile",
+    "ACCOUNT_DATA": "Account data",
+    "ACCOUNT_ID": "Account ID",
+    "SHORTCUTS": "Shortcuts",
+    "VIEW_FAVORITES": "View favorites",
+    "VIEW_RECOMMENDATIONS": "View recommendations",
+    "BACK_CATALOG": "Back to catalog",
+    "LOGOUT": "Sign out"
+  },
+  "FORGOT": {
+    "TITLE": "Recover password",
+    "HELP": "Enter your account email. If it exists, a recovery link valid for 1 hour will be generated.",
+    "SEND": "Send instructions",
+    "TOKEN": "Recovery token",
+    "NEW_PASSWORD": "New password",
+    "PASSWORD_MIN": "Password must be at least 8 characters.",
+    "CHANGE_PASSWORD": "Change password",
+    "BACK_LOGIN": "Back to login",
+    "INVALID_EMAIL": "Enter a valid email.",
+    "CONNECTION_ERROR": "Server connection error.",
+    "RESET_REQUIREMENTS": "Enter the token and a password with at least 8 characters.",
+    "RESET_ERROR": "Could not change the password."
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Discover movies, save favorites, and get recommendations aligned with your taste.",
+    "NAV_LABEL": "Footer links",
+    "RIGHTS": "© {{year}} Cinemax. All rights reserved."
   },
   "THEME": {
     "DARK": "Dark mode",

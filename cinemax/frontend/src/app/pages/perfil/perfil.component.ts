@@ -2,18 +2,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <section class="profile-page">
       <div class="profile-header">
         <div class="profile-avatar-lg">{{ initial }}</div>
         <div>
-          <p class="eyebrow">Perfil Cinemax</p>
+          <p class="eyebrow">{{ 'PROFILE.EYEBROW' | translate }}</p>
           <h1>{{ user?.nome }}</h1>
           <p class="email">{{ user?.email }}</p>
         </div>
@@ -21,34 +22,34 @@ import { AuthService } from '../../services/auth.service';
 
       <div class="profile-grid">
         <section class="profile-panel">
-          <h2>Dados da conta</h2>
+          <h2>{{ 'PROFILE.ACCOUNT_DATA' | translate }}</h2>
           <dl>
             <div>
-              <dt>Nome</dt>
+              <dt>{{ 'AUTH.NAME' | translate }}</dt>
               <dd>{{ user?.nome }}</dd>
             </div>
             <div>
-              <dt>Email</dt>
+              <dt>{{ 'AUTH.EMAIL' | translate }}</dt>
               <dd>{{ user?.email }}</dd>
             </div>
             <div>
-              <dt>ID da conta</dt>
+              <dt>{{ 'PROFILE.ACCOUNT_ID' | translate }}</dt>
               <dd>#{{ user?.id }}</dd>
             </div>
           </dl>
         </section>
 
         <section class="profile-panel">
-          <h2>Atalhos</h2>
+          <h2>{{ 'PROFILE.SHORTCUTS' | translate }}</h2>
           <div class="quick-actions">
-            <a routerLink="/favoritos">Ver favoritos</a>
-            <a routerLink="/recomendacoes">Ver recomendados</a>
-            <a routerLink="/catalogo">Voltar ao catálogo</a>
+            <a routerLink="/favoritos">{{ 'PROFILE.VIEW_FAVORITES' | translate }}</a>
+            <a routerLink="/recomendacoes">{{ 'PROFILE.VIEW_RECOMMENDATIONS' | translate }}</a>
+            <a routerLink="/catalogo">{{ 'PROFILE.BACK_CATALOG' | translate }}</a>
           </div>
         </section>
       </div>
 
-      <button class="danger-btn" (click)="logout()">Terminar sessão</button>
+      <button class="danger-btn" (click)="logout()">{{ 'PROFILE.LOGOUT' | translate }}</button>
     </section>
   `,
   styles: [`

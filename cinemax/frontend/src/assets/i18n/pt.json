@@ -20,9 +20,12 @@
     "NO_ACCOUNT": "Não tem conta?",
     "HAS_ACCOUNT": "Já tem conta?"
   },
+  "LANGUAGE": {
+    "SELECT": "Escolher idioma"
+  },
   "MOVIES": {
     "TITLE": "Catálogo de Filmes",
-    "TITLE_LABEL": "Titulo",
+    "TITLE_LABEL": "Título",
     "DETAILS": "Ver detalhes",
     "TRAILER": "Trailer",
     "SEARCH_PLACEHOLDER": "Pesquisar filmes...",
@@ -33,14 +36,70 @@
     "DURATION": "Duração",
     "SYNOPSIS": "Sinopse",
     "MY_RATING": "A minha avaliação",
+    "MY_RATING_SHORT": "Minha avaliação",
     "COMMENT": "Comentário",
     "SAVE_RATING": "Guardar avaliação",
     "ADD_FAVORITE": "Adicionar aos favoritos",
     "REMOVE_FAVORITE": "Remover dos favoritos",
+    "REVIEWS": "Avaliações",
+    "GENRE": "Género",
     "NO_RESULTS": "Nenhum filme encontrado.",
     "EXPORT_CSV": "Exportar favoritos CSV",
+    "EXPORT_PDF": "Exportar favoritos PDF",
     "RECOMMENDATIONS_TITLE": "Recomendado para si",
     "MIN": "min"
+  },
+  "GENRES": {
+    "ACTION": "Ação",
+    "ADVENTURE": "Aventura",
+    "ANIMATION": "Animação",
+    "COMEDY": "Comédia",
+    "CRIME": "Crime",
+    "DRAMA": "Drama",
+    "HORROR": "Terror",
+    "SCI_FI": "Ficção Científica",
+    "THRILLER": "Thriller"
+  },
+  "FAVORITES": {
+    "EMPTY": "Ainda não adicionou favoritos."
+  },
+  "RECOMMENDATIONS": {
+    "SEARCH_PLACEHOLDER": "Pesquisar para receber recomendações...",
+    "EMPTY": "Não encontrei filmes para esta recomendação.",
+    "SUBTITLE_DEFAULT": "Baseado nas suas avaliações, preferências e pesquisas",
+    "SUBTITLE_SEARCH": "Recomendados de acordo com a sua pesquisa",
+    "SUBTITLE_SEARCH_FALLBACK": "Não encontrei esse termo. Aqui ficam sugestões populares.",
+    "SUBTITLE_START": "Sugestões populares para começar",
+    "SUBTITLE_PREFERENCES": "Recomendados de acordo com as suas preferências"
+  },
+  "PROFILE": {
+    "EYEBROW": "Perfil Cinemax",
+    "ACCOUNT_DATA": "Dados da conta",
+    "ACCOUNT_ID": "ID da conta",
+    "SHORTCUTS": "Atalhos",
+    "VIEW_FAVORITES": "Ver favoritos",
+    "VIEW_RECOMMENDATIONS": "Ver recomendados",
+    "BACK_CATALOG": "Voltar ao catálogo",
+    "LOGOUT": "Terminar sessão"
+  },
+  "FORGOT": {
+    "TITLE": "Recuperar password",
+    "HELP": "Indique o email da conta. Se existir, será gerado um link de recuperação válido por 1 hora.",
+    "SEND": "Enviar instruções",
+    "TOKEN": "Token de recuperação",
+    "NEW_PASSWORD": "Nova password",
+    "PASSWORD_MIN": "A password deve ter pelo menos 8 caracteres.",
+    "CHANGE_PASSWORD": "Alterar password",
+    "BACK_LOGIN": "Voltar ao login",
+    "INVALID_EMAIL": "Introduza um email válido.",
+    "CONNECTION_ERROR": "Erro de ligação ao servidor.",
+    "RESET_REQUIREMENTS": "Informe o token e uma password com pelo menos 8 caracteres.",
+    "RESET_ERROR": "Não foi possível alterar a password."
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Descubra filmes, guarde favoritos e receba recomendações alinhadas com o seu gosto.",
+    "NAV_LABEL": "Links do rodapé",
+    "RIGHTS": "© {{year}} Cinemax. Todos os direitos reservados."
   },
   "THEME": {
     "DARK": "Modo escuro",

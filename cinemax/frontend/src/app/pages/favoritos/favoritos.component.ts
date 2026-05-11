@@ -12,8 +12,8 @@ import { MovieService } from '../../services/movie.service';
     <section class="page-header">
       <h1>{{ 'NAV.FAVORITES' | translate }}</h1>
       <div class="export-actions" *ngIf="filmes.length > 0">
-        <button class="btn-export btn-secondary" (click)="exportCSV()">Exportar CSV</button>
-        <button class="btn-export" (click)="exportPDF()">Exportar PDF</button>
+        <button class="btn-export btn-secondary" (click)="exportCSV()">{{ 'MOVIES.EXPORT_CSV' | translate }}</button>
+        <button class="btn-export" (click)="exportPDF()">{{ 'MOVIES.EXPORT_PDF' | translate }}</button>
       </div>
     </section>
 
@@ -23,7 +23,7 @@ import { MovieService } from '../../services/movie.service';
 
     <div *ngIf="!loading && filmes.length === 0" class="empty-state">
       <span class="empty-icon">🎬</span>
-      <p>Ainda não adicionou favoritos.</p>
+      <p>{{ 'FAVORITES.EMPTY' | translate }}</p>
     </div>
 
     <div class="favorites-table" *ngIf="!loading && filmes.length > 0">
@@ -32,10 +32,10 @@ import { MovieService } from '../../services/movie.service';
           <tr>
             <th>{{ 'MOVIES.TITLE_LABEL' | translate }}</th>
             <th *ngIf="hasValue('ano')">{{ 'MOVIES.YEAR' | translate }}</th>
-            <th *ngIf="hasValue('genero')">Género</th>
-            <th *ngIf="hasValue('classificacao')">TMDB ★</th>
-            <th *ngIf="hasValue('minha_nota')">Minha ★</th>
-            <th *ngIf="hasValue('comentario')">Comentário</th>
+            <th *ngIf="hasValue('genero')">{{ 'MOVIES.GENRE' | translate }}</th>
+            <th *ngIf="hasValue('classificacao')">TMDB</th>
+            <th *ngIf="hasValue('minha_nota')">{{ 'MOVIES.MY_RATING_SHORT' | translate }}</th>
+            <th *ngIf="hasValue('comentario')">{{ 'MOVIES.COMMENT' | translate }}</th>
           </tr>
         </thead>
         <tbody>

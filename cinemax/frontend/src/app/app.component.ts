@@ -12,7 +12,7 @@ import { AuthService } from './services/auth.service';
   imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule, TranslateModule],
   template: `
     <nav class="navbar">
-      <a class="nav-brand" routerLink="/catalogo" aria-label="Cinemax inicio">
+      <a class="nav-brand" routerLink="/catalogo" [attr.aria-label]="'NAV.HOME' | translate">
         <span class="logo-icon">🎬</span>
         <span class="logo-text">CINEMAX</span>
       </a>
@@ -24,7 +24,7 @@ import { AuthService } from './services/auth.service';
       </div>
 
       <div class="nav-actions">
-        <div class="lang-switch" aria-label="Escolher idioma">
+        <div class="lang-switch" [attr.aria-label]="'LANGUAGE.SELECT' | translate">
           <button type="button" [class.active]="currentLang === 'pt'" (click)="changeLang('pt')">PT</button>
           <span>|</span>
           <button type="button" [class.active]="currentLang === 'en'" (click)="changeLang('en')">EN</button>
@@ -35,7 +35,7 @@ import { AuthService } from './services/auth.service';
         </button>
 
         <ng-container *ngIf="auth.isLoggedIn(); else guestActions">
-          <button type="button" class="profile-avatar" [title]="auth.currentUser()?.nome || 'Perfil'" (click)="goProfile()">
+          <button type="button" class="profile-avatar" [title]="auth.currentUser()?.nome || ('PROFILE.EYEBROW' | translate)" (click)="goProfile()">
             {{ userInitial() }}
           </button>
           <button class="btn-outline" (click)="logout()">{{ 'NAV.LOGOUT' | translate }}</button>
@@ -51,10 +51,24 @@ import { AuthService } from './services/auth.service';
     <main class="main-content">
       <router-outlet />
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="logo-text">CINEMAX</span>
+      </div>
+      <p>{{ 'FOOTER.DESCRIPTION' | translate }}</p>
+      <nav class="footer-links" [attr.aria-label]="'FOOTER.NAV_LABEL' | translate">
+        <a routerLink="/catalogo">{{ 'NAV.CATALOG' | translate }}</a>
+        <a routerLink="/favoritos" *ngIf="auth.isLoggedIn()">{{ 'NAV.FAVORITES' | translate }}</a>
+        <a routerLink="/recomendacoes" *ngIf="auth.isLoggedIn()">{{ 'NAV.RECOMMENDATIONS' | translate }}</a>
+      </nav>
+      <small>{{ 'FOOTER.RIGHTS' | translate:{ year: currentYear } }}</small>
+    </footer>
   `
 })
 export class AppComponent implements OnInit {
   currentLang: 'pt' | 'en' = (localStorage.getItem('lang') as 'pt' | 'en') || 'pt';
+  currentYear = new Date().getFullYear();
 
   constructor(
     public theme: ThemeService,

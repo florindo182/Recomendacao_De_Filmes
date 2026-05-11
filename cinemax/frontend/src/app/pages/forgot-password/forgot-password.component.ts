@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, TranslateModule],
   template: `
     <div class="auth-page">
       <div class="auth-card">
         <a class="auth-logo" routerLink="/catalogo">CINEMAX</a>
 
-        <h2>Recuperar password</h2>
+        <h2>{{ 'FORGOT.TITLE' | translate }}</h2>
         <p class="help-text">
-          Indique o email da conta. Se existir, sera gerado um link de recuperacao valido por 1 hora.
+          {{ 'FORGOT.HELP' | translate }}
         </p>
 
         <div class="alert alert-error" *ngIf="error">{{ error }}</div>
@@ -23,7 +24,7 @@ import { AuthService } from '../../services/auth.service';
 
         <form (ngSubmit)="submitEmail()" *ngIf="!token">
           <div class="field">
-            <label>Email</label>
+            <label>{{ 'AUTH.EMAIL' | translate }}</label>
             <input
               type="email"
               [(ngModel)]="email"
@@ -37,32 +38,32 @@ import { AuthService } from '../../services/auth.service';
 
           <button type="submit" class="btn-submit" [disabled]="loading || !!emailError">
             <span *ngIf="loading" class="spinner"></span>
-            Enviar instrucoes
+            {{ 'FORGOT.SEND' | translate }}
           </button>
         </form>
 
         <form (ngSubmit)="submitReset()" *ngIf="token">
           <div class="field">
-            <label>Token de recuperacao</label>
+            <label>{{ 'FORGOT.TOKEN' | translate }}</label>
             <input type="text" [(ngModel)]="token" name="token" required autocomplete="one-time-code" />
           </div>
 
           <div class="field">
-            <label>Nova password</label>
+            <label>{{ 'FORGOT.NEW_PASSWORD' | translate }}</label>
             <input type="password" [(ngModel)]="password" name="password" required autocomplete="new-password" />
             <small class="field-error" *ngIf="password && password.length < 8">
-              A password deve ter pelo menos 8 caracteres.
+              {{ 'FORGOT.PASSWORD_MIN' | translate }}
             </small>
           </div>
 
           <button type="submit" class="btn-submit" [disabled]="loading || password.length < 8">
             <span *ngIf="loading" class="spinner"></span>
-            Alterar password
+            {{ 'FORGOT.CHANGE_PASSWORD' | translate }}
           </button>
         </form>
 
         <p class="switch-mode">
-          <a routerLink="/login">Voltar ao login</a>
+          <a routerLink="/login">{{ 'FORGOT.BACK_LOGIN' | translate }}</a>
         </p>
       </div>
     </div>
@@ -178,7 +179,11 @@ export class ForgotPasswordComponent implements OnInit {
   success = '';
   loading = false;
 
-  constructor(private auth: AuthService, private route: ActivatedRoute) {}
+  constructor(
+    private auth: AuthService,
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.token = this.route.snapshot.queryParamMap.get('token') ?? '';
@@ -187,7 +192,7 @@ export class ForgotPasswordComponent implements OnInit {
   validateEmail(): boolean {
     const value = this.email.trim();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    this.emailError = valid || !value ? '' : 'Introduza um email valido.';
+    this.emailError = valid || !value ? '' : this.translate.instant('FORGOT.INVALID_EMAIL');
     return valid;
   }
 
@@ -196,7 +201,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.success = '';
 
     if (!this.validateEmail()) {
-      this.emailError = 'Introduza um email valido.';
+      this.emailError = this.translate.instant('FORGOT.INVALID_EMAIL');
       return;
     }
 
@@ -210,7 +215,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: err => {
         this.loading = false;
-        this.error = err.error?.message || 'Erro de ligacao ao servidor.';
+        this.error = err.error?.message || this.translate.instant('FORGOT.CONNECTION_ERROR');
       }
     });
   }
@@ -220,7 +225,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.success = '';
 
     if (!this.token || this.password.length < 8) {
-      this.error = 'Informe o token e uma password com pelo menos 8 caracteres.';
+      this.error = this.translate.instant('FORGOT.RESET_REQUIREMENTS');
       return;
     }
 
@@ -233,7 +238,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: err => {
         this.loading = false;
-        this.error = err.error?.message || 'Nao foi possivel alterar a password.';
+        this.error = err.error?.message || this.translate.instant('FORGOT.RESET_ERROR');
       }
     });
   }

@@ -2,7 +2,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { MovieService, Filme } from '../../services/movie.service';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
@@ -14,14 +14,14 @@ import { MovieCardComponent } from '../../components/movie-card/movie-card.compo
   template: `
     <section class="page-header">
       <h1>{{ 'MOVIES.RECOMMENDATIONS_TITLE' | translate }}</h1>
-      <p class="subtitle">{{ subtitle }}</p>
+      <p class="subtitle">{{ subtitleKey | translate }}</p>
 
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
         <input
           class="search-input"
           type="text"
-          placeholder="Pesquisar para receber recomendacoes..."
+          [placeholder]="'RECOMMENDATIONS.SEARCH_PLACEHOLDER' | translate"
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearch($event)"
         />
@@ -34,7 +34,7 @@ import { MovieCardComponent } from '../../components/movie-card/movie-card.compo
 
     <div *ngIf="!loading && filmes.length === 0" class="empty-state">
       <span class="empty-icon">🎬</span>
-      <p>Nao encontrei filmes para esta recomendacao.</p>
+      <p>{{ 'RECOMMENDATIONS.EMPTY' | translate }}</p>
     </div>
 
     <div class="movies-grid" *ngIf="!loading && filmes.length > 0">
@@ -74,11 +74,14 @@ export class RecomendacoesComponent implements OnInit, OnDestroy {
   filmes: Filme[] = [];
   loading = true;
   searchTerm = '';
-  subtitle = 'Baseado nas suas avaliacoes, preferencias e pesquisas';
+  subtitleKey = 'RECOMMENDATIONS.SUBTITLE_DEFAULT';
   private destroy$ = new Subject<void>();
   private search$ = new Subject<string>();
 
-  constructor(private movies: MovieService) {}
+  constructor(
+    private movies: MovieService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.search$.pipe(
@@ -86,6 +89,10 @@ export class RecomendacoesComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe(() => this.load());
+
+    this.translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.load());
 
     this.load();
   }
@@ -104,7 +111,7 @@ export class RecomendacoesComponent implements OnInit, OnDestroy {
     this.movies.getRecomendacoes({ search: this.searchTerm.trim(), limit: 12 }).subscribe({
       next: res => {
         this.filmes = res.data;
-        this.subtitle = res.message;
+        this.subtitleKey = this.subtitleFor(res.message);
         this.loading = false;
       },
       error: () => { this.loading = false; }
@@ -112,4 +119,12 @@ export class RecomendacoesComponent implements OnInit, OnDestroy {
   }
 
   toggleFav(filme: Filme): void { this.movies.toggleFavorito(filme).subscribe(); }
+
+  private subtitleFor(message: string): string {
+    if (message.includes('pesquisa')) return 'RECOMMENDATIONS.SUBTITLE_SEARCH';
+    if (message.includes('termo')) return 'RECOMMENDATIONS.SUBTITLE_SEARCH_FALLBACK';
+    if (message.includes('comecar')) return 'RECOMMENDATIONS.SUBTITLE_START';
+    if (message.includes('preferencias')) return 'RECOMMENDATIONS.SUBTITLE_PREFERENCES';
+    return 'RECOMMENDATIONS.SUBTITLE_DEFAULT';
+  }
 }

@@ -165,6 +165,47 @@ body {
   max-width: 1400px; margin: 0 auto; padding: 2rem 2rem 4rem;
 }
 
+.site-footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  display: grid;
+  grid-template-columns: minmax(180px, .9fr) minmax(220px, 1.2fr) auto;
+  gap: 1rem 2rem;
+  align-items: center;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.site-footer p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: .9rem;
+}
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 800;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+.site-footer small {
+  grid-column: 1 / -1;
+  font-size: .78rem;
+}
+
 /* ── Page Header ──────────────────────────────────────────── */
 .page-header {
   margin-bottom: 2rem;
@@ -264,6 +305,11 @@ body {
   .movies-grid, .loading-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem; }
   .filters-bar { flex-direction: column; }
   .search-wrap, .filter-select { width: 100%; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+  .footer-links { justify-content: flex-start; }
 }
 
 @media (max-width: 480px) {

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { MovieService, Filme } from '../../services/movie.service';
 import { AuthService } from '../../services/auth.service';
@@ -30,7 +31,7 @@ import { MovieCardComponent } from '../../components/movie-card/movie-card.compo
 
         <select class="filter-select" [(ngModel)]="selectedGenero" (change)="load()">
           <option value="">{{ 'MOVIES.ALL_GENRES' | translate }}</option>
-          <option *ngFor="let g of generos" [value]="g.id">{{ g.nome }}</option>
+          <option *ngFor="let g of generos" [value]="g.id">{{ g.key | translate }}</option>
         </select>
 
         <select class="filter-select" [(ngModel)]="orderBy" (change)="load()">
@@ -80,14 +81,18 @@ export class CatalogoComponent implements OnInit, OnDestroy {
   private search$     = new Subject<string>();
 
   generos = [
-    { id: 1,  nome: 'Ação' },    { id: 2, nome: 'Aventura' },
-    { id: 3,  nome: 'Animação' },{ id: 4, nome: 'Comédia' },
-    { id: 5,  nome: 'Crime' },   { id: 7, nome: 'Drama' },
-    { id: 9,  nome: 'Terror' },  { id: 12, nome: 'Ficção Científica' },
-    { id: 13, nome: 'Thriller' },
+    { id: 1,  key: 'GENRES.ACTION' },    { id: 2, key: 'GENRES.ADVENTURE' },
+    { id: 3,  key: 'GENRES.ANIMATION' }, { id: 4, key: 'GENRES.COMEDY' },
+    { id: 5,  key: 'GENRES.CRIME' },     { id: 7, key: 'GENRES.DRAMA' },
+    { id: 9,  key: 'GENRES.HORROR' },    { id: 12, key: 'GENRES.SCI_FI' },
+    { id: 13, key: 'GENRES.THRILLER' },
   ];
 
-  constructor(public movies: MovieService, public auth: AuthService) {}
+  constructor(
+    public movies: MovieService,
+    public auth: AuthService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.search$.pipe(
@@ -95,6 +100,10 @@ export class CatalogoComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe(() => { this.page = 1; this.load(); });
+
+    this.translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => { this.page = 1; this.load(); });
 
     this.load();
   }

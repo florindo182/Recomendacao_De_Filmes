@@ -1,9 +1,10 @@
 // src/app/pages/filme-detalhe/filme-detalhe.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subject, takeUntil } from 'rxjs';
 import { MovieService, Filme } from '../../services/movie.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -50,7 +51,7 @@ import { AuthService } from '../../services/auth.service';
 
             <div class="hero-actions">
               <button class="btn-fav-big" (click)="toggleFav()" [class.active]="isFav">
-                {{ isFav ? '❤️ Remover favorito' : '🤍 Adicionar favorito' }}
+                {{ (isFav ? 'MOVIES.REMOVE_FAVORITE' : 'MOVIES.ADD_FAVORITE') | translate }}
               </button>
               <a *ngIf="filme.trailer_url" [href]="filme.trailer_url" target="_blank" class="btn-trailer">
                 ▶ {{ 'MOVIES.TRAILER' | translate }}
@@ -79,7 +80,7 @@ import { AuthService } from '../../services/auth.service';
 
         <!-- Avaliações de outros -->
         <div class="section-card" *ngIf="avaliacoes.length > 0">
-          <h2 class="section-heading">Avaliações ({{ avaliacoes.length }})</h2>
+          <h2 class="section-heading">{{ 'MOVIES.REVIEWS' | translate }} ({{ avaliacoes.length }})</h2>
           <div class="review-list">
             <div class="review-item" *ngFor="let a of avaliacoes">
               <div class="review-header">
@@ -154,7 +155,7 @@ import { AuthService } from '../../services/auth.service';
     }
   `]
 })
-export class FilmeDetalheComponent implements OnInit {
+export class FilmeDetalheComponent implements OnInit, OnDestroy {
   filme?: Filme;
   avaliacoes: any[] = [];
   loading = true;
@@ -162,15 +163,31 @@ export class FilmeDetalheComponent implements OnInit {
   myNota = 0;
   myComment = '';
   saveMsg = '';
+  private destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
     public movies: MovieService,
-    public auth: AuthService
+    public auth: AuthService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
+    this.translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.load());
+
+    this.load();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private load(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.loading = true;
     this.movies.get(id).subscribe({
       next: res => {
         this.filme     = res.data.filme;
