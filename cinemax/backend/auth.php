@@ -9,6 +9,8 @@ $db     = Database::getInstance();
 $method = $_SERVER['REQUEST_METHOD'];
 $action = $_GET['action'] ?? '';
 
+ensureUserRoleColumn($db);
+
 match ($action) {
     'register'       => handleRegister($db),
     'login'          => handleLogin($db),
@@ -42,16 +44,18 @@ function handleRegister(Database $db): void {
     }
 
     $hash = password_hash($pass, PASSWORD_BCRYPT, ['cost' => 12]);
+    $usersCount = (int) ($db->queryOne('SELECT COUNT(*) AS total FROM utilizadores')['total'] ?? 0);
+    $role = $usersCount === 0 ? 'admin' : 'user';
     $db->execute(
-        'INSERT INTO utilizadores (nome, email, password_hash) VALUES (?, ?, ?)',
-        [$nome, $email, $hash]
+        'INSERT INTO utilizadores (nome, email, password_hash, papel) VALUES (?, ?, ?, ?)',
+        [$nome, $email, $hash, $role]
     );
     $id = $db->lastInsertId();
 
     $_SESSION['utilizador_id'] = $id;
     $_SESSION['nome']          = $nome;
 
-    jsonResponse(true, 'Conta criada com sucesso.', ['id' => $id, 'nome' => $nome, 'email' => $email]);
+    jsonResponse(true, 'Conta criada com sucesso.', ['id' => $id, 'nome' => $nome, 'email' => $email, 'role' => $role]);
 }
 
 // ── Login ─────────────────────────────────────────────────────
@@ -65,7 +69,7 @@ function handleLogin(Database $db): void {
     }
 
     $user = $db->queryOne(
-        'SELECT id, nome, email, password_hash, ativo FROM utilizadores WHERE email = ?',
+        'SELECT id, nome, email, password_hash, ativo, papel FROM utilizadores WHERE email = ?',
         [$email]
     );
 
@@ -83,6 +87,7 @@ function handleLogin(Database $db): void {
         'id'    => $user['id'],
         'nome'  => $user['nome'],
         'email' => $user['email'],
+        'role'  => $user['papel'] ?? 'user',
     ]);
 }
 
@@ -95,7 +100,7 @@ function handleLogout(): void {
 // ── Dados do utilizador autenticado ──────────────────────────
 function handleMe(Database $db): void {
     $id   = requireAuth();
-    $user = $db->queryOne('SELECT id, nome, email, foto_perfil, criado_em FROM utilizadores WHERE id = ?', [$id]);
+    $user = $db->queryOne('SELECT id, nome, email, foto_perfil, criado_em, papel AS role FROM utilizadores WHERE id = ?', [$id]);
     jsonResponse(true, 'OK', $user ?? []);
 }
 
@@ -154,4 +159,19 @@ function handleResetPassword(Database $db): void {
     );
 
     jsonResponse(true, 'Password alterada com sucesso.');
+}
+
+function ensureUserRoleColumn(Database $db): void {
+    $column = $db->queryOne("SHOW COLUMNS FROM utilizadores LIKE 'papel'");
+    if (!$column) {
+        $db->execute("ALTER TABLE utilizadores ADD papel ENUM('user','admin') NOT NULL DEFAULT 'user' AFTER password_hash");
+    }
+
+    $admin = $db->queryOne("SELECT id FROM utilizadores WHERE papel = 'admin' LIMIT 1");
+    if (!$admin) {
+        $first = $db->queryOne('SELECT id FROM utilizadores ORDER BY id ASC LIMIT 1');
+        if ($first) {
+            $db->execute("UPDATE utilizadores SET papel = 'admin' WHERE id = ?", [$first['id']]);
+        }
+    }
 }

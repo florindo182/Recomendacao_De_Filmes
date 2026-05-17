@@ -21,6 +21,7 @@ import { AuthService } from './services/auth.service';
         <a routerLink="/catalogo" routerLinkActive="active">{{ 'NAV.CATALOG' | translate }}</a>
         <a routerLink="/favoritos" routerLinkActive="active">{{ 'NAV.FAVORITES' | translate }}</a>
         <a routerLink="/recomendacoes" routerLinkActive="active">{{ 'NAV.RECOMMENDATIONS' | translate }}</a>
+        <a routerLink="/admin" routerLinkActive="active" *ngIf="auth.isAdmin()">{{ 'NAV.ADMIN' | translate }}</a>
       </div>
 
       <div class="nav-actions">
@@ -61,6 +62,7 @@ import { AuthService } from './services/auth.service';
         <a routerLink="/catalogo">{{ 'NAV.CATALOG' | translate }}</a>
         <a routerLink="/favoritos" *ngIf="auth.isLoggedIn()">{{ 'NAV.FAVORITES' | translate }}</a>
         <a routerLink="/recomendacoes" *ngIf="auth.isLoggedIn()">{{ 'NAV.RECOMMENDATIONS' | translate }}</a>
+        <a routerLink="/admin" *ngIf="auth.isAdmin()">{{ 'NAV.ADMIN' | translate }}</a>
       </nav>
       <small>{{ 'FOOTER.RIGHTS' | translate:{ year: currentYear } }}</small>
     </footer>

@@ -16,6 +16,7 @@ CREATE TABLE utilizadores (
     nome            VARCHAR(100)        NOT NULL,
     email           VARCHAR(180)        NOT NULL UNIQUE,
     password_hash   VARCHAR(255)        NOT NULL,
+    papel           ENUM('user','admin') NOT NULL DEFAULT 'user',
     foto_perfil     VARCHAR(500)        NULL,
     reset_token     VARCHAR(100)        NULL,
     reset_expiry    DATETIME            NULL,
@@ -124,9 +125,9 @@ INSERT INTO filmes (tmdb_id, titulo, titulo_original, sinopse, ano, duracao_min,
 (238,    'O Padrinho',    'The Godfather',   'O envelhecido patriarca de uma dinastia do crime organizado transfere o controlo.', 1972, 175, 9.2, 5,  'en');
 
 -- Utilizador de demonstração (password: Demo@1234)
-INSERT INTO utilizadores (nome, email, password_hash) VALUES
+INSERT INTO utilizadores (nome, email, password_hash, papel) VALUES
 ('Utilizador Demo', 'demo@cinemax.ao',
- '$2y$12$xYzDemoHashPlaceholder123456789012345678901234567890');
+ '$2y$12$xYzDemoHashPlaceholder123456789012345678901234567890', 'admin');
 
 -- Avaliações de exemplo
 INSERT INTO avaliacoes (utilizador_id, filme_id, nota, comentario) VALUES

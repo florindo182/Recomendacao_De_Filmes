@@ -112,7 +112,14 @@ function listTmdbFilmes(array $config): void
     }
 
     $data = tmdbRequest($config, $endpoint, $params);
-    $results = array_slice($data['results'] ?? [], 0, $limit);
+    $results = $data['results'] ?? [];
+    if ($search && $genero) {
+        $tmdbGenre = localGenreToTmdb((int) $genero);
+        if ($tmdbGenre) {
+            $results = array_values(array_filter($results, fn($movie) => in_array($tmdbGenre, $movie['genre_ids'] ?? [], true)));
+        }
+    }
+    $results = array_slice($results, 0, $limit);
     $results = fillMissingOverviews($config, $results);
     $filmes = array_map('mapTmdbMovie', $results);
     $totalPages = min(500, (int) ($data['total_pages'] ?? 1));

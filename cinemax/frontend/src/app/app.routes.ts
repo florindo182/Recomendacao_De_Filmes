@@ -15,6 +15,16 @@ const authGuard = () => {
   );
 };
 
+const adminGuard = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isAdmin()) return true;
+  return auth.checkSession().pipe(
+    map(isLoggedIn => isLoggedIn && auth.isAdmin() ? true : router.createUrlTree(['/catalogo'])),
+    catchError(() => of(router.createUrlTree(['/login'])))
+  );
+};
+
 export const routes: Routes = [
   { path: '',           redirectTo: 'catalogo', pathMatch: 'full' },
   {
@@ -52,6 +62,11 @@ export const routes: Routes = [
     path: 'perfil',
     loadComponent: () => import('./pages/perfil/perfil.component').then(m => m.PerfilComponent),
     canActivate: [authGuard],
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent),
+    canActivate: [adminGuard],
   },
   { path: '**', redirectTo: 'catalogo' },
 ];

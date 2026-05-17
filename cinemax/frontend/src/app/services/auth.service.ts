@@ -8,6 +8,7 @@ export interface User {
   nome: string;
   email: string;
   foto_perfil?: string;
+  role?: 'user' | 'admin';
 }
 
 export interface AuthResponse {
@@ -23,6 +24,7 @@ export class AuthService {
 
   currentUser = signal<User | null>(null);
   isLoggedIn  = signal<boolean>(false);
+  isAdmin = signal<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.checkSession().subscribe();
@@ -34,9 +36,11 @@ export class AuthService {
         if (res.success && res.data?.id) {
           this.currentUser.set(res.data);
           this.isLoggedIn.set(true);
+          this.isAdmin.set(res.data.role === 'admin');
         } else {
           this.currentUser.set(null);
           this.isLoggedIn.set(false);
+          this.isAdmin.set(false);
         }
       }),
       map(res => !!(res.success && res.data?.id))
@@ -50,6 +54,7 @@ export class AuthService {
       if (res.success) {
         this.currentUser.set(res.data);
         this.isLoggedIn.set(true);
+        this.isAdmin.set(res.data.role === 'admin');
       }
     }));
   }
@@ -61,6 +66,7 @@ export class AuthService {
       if (res.success) {
         this.currentUser.set(res.data);
         this.isLoggedIn.set(true);
+        this.isAdmin.set(res.data.role === 'admin');
       }
     }));
   }
@@ -71,6 +77,7 @@ export class AuthService {
     ).pipe(tap(() => {
       this.currentUser.set(null);
       this.isLoggedIn.set(false);
+      this.isAdmin.set(false);
     }));
   }
 
